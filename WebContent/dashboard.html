@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2503/2503508.png" />
+    <style>
+        body {
+            background-color: #e6f7ff;
+            color: #007bff;
+            font-family: "Arial";
+            font-weight: 300;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 2rem;
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 120px;
+            font-weight: 600;
+            color: #007bff;
+            text-shadow: 2px 2px 0px #0056b3, 6px 6px 0px #00488a, 8px 8px 0px #003366;
+        }
+
+        .search, .searchContainer, .searchRow {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .searchTerm, .searchTermRow {
+            width: 30%;
+            border: 3px solid #007bff;
+            padding: 5px;
+            height: 20px;
+            border-radius: 5px;
+            color: #007bff;
+            margin: 10px;
+        }
+
+        .searchButton {
+            width: 120px;
+            height: 40px;
+            border: 1px solid #007bff;
+            background: #007bff;
+            color: #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 19px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .tabs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-container a, .nav-container .label {
+            padding: 10px 30px;
+            color: #007bff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .header_nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end;
+            background-color: #f8f9fa;
+        }
+
+        .header_nav li {
+            margin: 0 10px;
+        }
+
+        .header_nav li a {
+            display: block;
+            padding: 14px 16px;
+            text-decoration: none;
+            color: #007bff;
+            background-color: transparent;
+        }
+
+        .header_nav li a:hover {
+            background-color: #d4e8ff;
+        }
+
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 1fr);
+            font-family: "Arial";
+            font-size: 16px;
+            min-width: 900px;
+            place-content: center;
+            gap: 5px;
+        }
+
+        .metadata p {
+            font-family: "Arial";
+            font-size: 20px;
+            color: #007bff;
+            place-self: center;
+            gap: 5px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="header_nav">
+    <nav class="header">
+        <ul class="header-right" id="home"></ul>
+    </nav>
+</div>
+<div>
+    <h1>Dashboard</h1>
+</div>
+<div class="nav-container">
+    <div class="tabs">
+        <input class="input" id="tab-1" name="tabs" type="radio" onclick="showForm('star')">
+        <label class="label" for="tab-1">Add New Star</label>
+        <div class="panel" id="star_body" style="display:none;">
+            <div class="wrap">
+                <div class="search">
+                    <form id="star">
+                        <input type="text" class="searchTerm name" placeholder="Name" name="star_name" required>
+                        <input type="text" class="searchTerm year" placeholder="Year" name="star_year">
+                        <button type="submit" class="searchButton addStar" name="addStar" value="Add Star">
+                            Add Star
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <input class="input" id="tab-2" name="tabs" type="radio" onclick="showForm('movie')">
+        <label class="label" for="tab-2">Add New Movie</label>
+        <div class="panel" id="alpha_body" style="display:none;">
+            <div class="wrap">
+                <div class="search">
+                    <form id="movie">
+                        <input type="text" class="searchTerm title" placeholder="Title" name="movie_title" required>
+                        <input type="text" class="searchTerm director" placeholder="Director" name="movie_director">
+                        <input type="text" class="searchTerm year" placeholder="Year" name="movie_year">
+                        <input type="text" class="searchTerm star" placeholder="Star Name" name="movie_star">
+                        <input type="text" class="searchTerm genre" placeholder="Genre" name="movie_genre">
+                        <button type="submit" class="searchButton addMovie" name="addMovie" value="Add Movie">
+                            Add Movie
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='metadata' id='metadata'></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="dashboard.js"></script>

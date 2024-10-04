@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.11/jquery.autocomplete.min.js"></script>
     <style>
         button {
             background-color: #007bff;
@@ -36,6 +38,7 @@
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
             color: #212529;
+            padding-top: 60px; /* 增加顶部内边距 */
         }
 
         a {
@@ -159,6 +162,8 @@
             background-color: #f8f9fa;
             width: 100%;
             border-bottom: 1px solid #ccc;
+            height: 50px; /* 确保导航栏高度适当设置 */
+            float: right; /* 新增，将导航移至右侧 */
         }
 
         .header_nav li {
@@ -167,7 +172,7 @@
 
         .header_nav li a {
             display: block;
-            color: #212529;
+            color: #007bff; /* 蓝色字体 */
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
@@ -175,11 +180,92 @@
 
         .header_nav li a:hover {
             background-color: #f8f9fa;
-            color: #007bff;
+            color: #0056b3; /* 悬停时的颜色变化 */
         }
 
         .prevNext li {
             float: right;
+        }
+
+        .header_nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+
+        .header_nav .search-container {
+            position: relative;
+            display: inline-block;
+            width: 300px;
+            margin-right: 20px;
+        }
+
+        .header_nav .search-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .header_nav .autocomplete-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            width: 100%;
+            max-height: 500px;
+            overflow-y: auto;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+
+            border-top: none;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header_nav .autocomplete-results li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .header_nav .autocomplete-results li:hover,
+        .header_nav .autocomplete-results li.selected {
+            background-color: #e6f7ff;
+        }
+
+        .header_nav .search-input-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .header_nav .search-input {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        .header_nav .search-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: 2px solid #007bff;
+            border-left: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .header_nav .search-button:hover {
+            background-color: #0056b3;
         }
     </style>
     <title>Movie List</title>
@@ -187,6 +273,16 @@
 <body>
 
 <div class="header_nav">
+
+    <div class="search-container">
+        <div class="search-input-container">
+            <input type="text" id="autocomplete" placeholder="Search movies..." class="search-input">
+            <button id="search-button" class="search-button">Search</button>
+        </div>
+        <ul id="autocomplete-results" class="autocomplete-results"></ul>
+    </div>
+
+
     <nav class="header">
         <ul class="header-right" id="home">
             <li><a href="index.html">Home</a></li>
@@ -230,5 +326,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="movie-list.js"></script>
+<script src="autocomplete.js"></script>
 </body>
 </html>

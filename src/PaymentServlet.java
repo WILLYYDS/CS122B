@@ -39,6 +39,16 @@ public class PaymentServlet extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
 
+        if (firstName.isEmpty() || lastName.isEmpty() || creditCardNum.isEmpty() || expirationDate.isEmpty()) {
+            response.setStatus(HttpURLConnection.HTTP_BAD_REQUEST);
+            JsonObject jsonError = new JsonObject();
+            jsonError.addProperty("errorMessage", "Missing required parameter(s).");
+            jsonError.addProperty("status", "failure");
+            out.write(jsonError.toString());
+            out.close();
+            return;
+        }
+
         try (Connection conn = dataSource.getConnection();
              PreparedStatement statement = conn.prepareStatement(getConfirmCardQuery())) {
 
@@ -60,17 +70,28 @@ public class PaymentServlet extends HttpServlet {
                     String errorMessage = getErrorMessage(rs);
                     jsonResponse.addProperty("message", errorMessage);
                 }
+            } else {
+                jsonResponse.addProperty("status", "fail");
+                jsonResponse.addProperty("message", "No records found.");
             }
 
             out.write(jsonResponse.toString());
             response.setStatus(HttpURLConnection.HTTP_OK);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JsonObject jsonError = new JsonObject();
             jsonError.addProperty("errorMessage", e.getMessage());
             jsonError.addProperty("status", "failure");
             out.write(jsonError.toString());
 
-            request.getServletContext().log("Error here:", e);
+            request.getServletContext().log("SQL Error:", e);
+            response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
+        } catch (Exception e) {
+            JsonObject jsonError = new JsonObject();
+            jsonError.addProperty("errorMessage", e.toString());
+            jsonError.addProperty("status", "failure");
+            out.write(jsonError.toString());
+
+            request.getServletContext().log("General Error:", e);
             response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
         } finally {
             out.close();

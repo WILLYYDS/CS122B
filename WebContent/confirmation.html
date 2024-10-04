@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2503/2503508.png" />
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
+      background-color: #e6f7ff;
       color: #212529;
     }
 
@@ -23,37 +22,6 @@
     a:hover {
       color: #0056b3;
       text-decoration: underline;
-    }
-
-    .cartTable thead tr {
-      border-top: none;
-      border-bottom: 2px solid #dee2e6;
-      color: #212529;
-      font-size: 16px;
-    }
-
-    .table_title th {
-      border-top: none;
-      border-bottom: 2px solid #dee2e6;
-      font-weight: bold;
-      font-size: 20px;
-      color: #007bff;
-    }
-
-    .cartTable tbody th {
-      color: #212529;
-      font-weight: normal;
-      padding: 12px;
-      border-top: 1px solid #dee2e6;
-      transition: background-color 0.3s;
-    }
-
-    .cartTable tbody tr:hover th {
-      background-color: #f8f9fa;
-    }
-
-    .cartTable tbody tr:hover th a {
-      color: #007bff;
     }
 
     h1 {
@@ -95,34 +63,34 @@
       background-color: #f8f9fa;
       color: #007bff;
     }
+
+    .congrats-message {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 24px;
+      color: #007bff;
+      font-weight: bold;
+    }
   </style>
   <title>Confirmation</title>
 </head>
 <body>
 
-<div class = "header_nav">
+<div class="header_nav">
   <nav class="header">
-    <ul class="header-right" id = "home"></ul>
+    <ul class="header-right" id="home"></ul>
   </nav>
 </div>
 
-<div>
+<div class="text-center">
   <h1>Confirmation Page</h1>
+  <div class="congrats-message">
+    Congratulations on completing your purchase! 🎉<br>
+    Thank you for shopping with us. We hope you enjoy your movies!
+  </div>
 </div>
 
-<div>
-  <table id=cart_table class="table table-striped cartTable">
-    <thead>
-    <tr class="table_title">
-      <th>Sales Id</th>
-      <th>Movie Title</th>
-      <th>Price of Each Movie</th>
-      <th>Quantity of Each Movie</th>
-    </tr>
-    </thead>
-    <tbody id=cart_table_body></tbody>
-  </table>
-</div>
+<div id="Element"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

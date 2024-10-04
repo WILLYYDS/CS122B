@@ -49,10 +49,6 @@ async function handleMovieListResult(resultData) {
         <li><a href="#" id="sort_t0r0" onclick="updateSort('t0r0')">Title ↓ Rating ↑</a></li>
         <li><a href="#" id="sort_t1r1" onclick="updateSort('t1r1')">Title ↑ Rating ↑</a></li>
         <li><a href="#" id="sort_t0r1" onclick="updateSort('t0r1')">Title ↓ Rating ↓</a></li>
-        <li><a href="#" id="sort_r1t0" onclick="updateSort('r1t0')">Rating ↑ Title ↓</a></li>
-        <li><a href="#" id="sort_r0t1" onclick="updateSort('r0t1')">Rating ↓ Title ↑</a></li>
-        <li><a href="#" id="sort_r1t1" onclick="updateSort('r1t1')">Rating ↑ Title ↑</a></li>
-        <li><a href="#" id="sort_r0t0" onclick="updateSort('r0t0')">Rating ↓ Title ↓</a></li>
     `);
 
     const prevNext = $("#prevNext");

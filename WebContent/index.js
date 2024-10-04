@@ -51,6 +51,41 @@ const handleSearchResult = resultDataString => {
     window.location.replace(`movie-list.html?num=10&page=1&sort=r0t1&${newURL}`);
 };
 
+function handleLookup(query, doneCallback) {
+    console.log("autocomplete initiated");
+
+    console.log("sending AJAX request to backend Java Servlet");
+    jQuery.ajax({
+        "method": "GET",
+        "url": "api/movie-suggestion?query=" + query,
+        "success": function(data) {
+            console.log("lookup ajax successful");
+            doneCallback(data);
+        },
+        "error": function(errorData) {
+            console.log("lookup ajax error");
+            console.log(errorData);
+        }
+    });
+}
+
+function handleSelectSuggestion(suggestion) {
+    console.log("you select " + suggestion["value"] + " with ID " + suggestion["data"]["movieId"]);
+    window.location.href = "single-movie.html?id=" + suggestion["data"]["movieId"];
+}
+
+$("#movie-autocomplete").autocomplete({
+    lookup: function (query, doneCallback) {
+        handleLookup(query, doneCallback);
+    },
+    onSelect: function(suggestion) {
+        handleSelectSuggestion(suggestion);
+    },
+    minChars: 3,
+    deferRequestBy: 300
+});
+
+
 $.ajax({
     dataType: "json",
     method: "GET",

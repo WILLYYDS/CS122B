@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+
 @WebServlet(name = "ShoppingCartServlet", urlPatterns = "/api/shopping-cart")
 public class ShoppingCartServlet extends HttpServlet {
 
@@ -31,16 +32,20 @@ public class ShoppingCartServlet extends HttpServlet {
 
         JsonArray jsonArray = new JsonArray();
 
-
         JsonObject UrljsonObject = new JsonObject();
         String url = (String) session.getAttribute("movie_page");
         UrljsonObject.addProperty("movie_page", url);
-        System.out.println(UrljsonObject);
+        System.out.println("Movie page URL from session: " + url);
         jsonArray.add(UrljsonObject);
 
+        // 添加购物车内容到响应中
+        JsonObject cartJsonObject = new JsonObject();
+        String cartData = (String) session.getAttribute("cart_data");
+        cartJsonObject.addProperty("cart_data", cartData);
+        System.out.println("Cart data from session: " + cartData);
+        jsonArray.add(cartJsonObject);
 
         out.write(jsonArray.toString());
         response.setStatus(200);
     }
-
 }

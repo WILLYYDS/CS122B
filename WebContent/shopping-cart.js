@@ -55,6 +55,21 @@ function proceedToPayment() {
         alert("Your shopping cart is empty. Please add some movies before proceeding to payment.");
         return false;
     }
+
+    // 发送购物车数据到服务器
+    $.ajax({
+        type: "POST",
+        url: "api/shopping-cart",
+        data: { cart_data: JSON.stringify(allItems) },
+        success: function(response) {
+            console.log("Cart data sent to server:", allItems);
+            window.location.href = "confirmation.html";
+        },
+        error: function(error) {
+            console.error("Error sending cart data to server:", error);
+        }
+    });
+
     return true;
 }
 

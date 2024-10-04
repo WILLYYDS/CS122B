@@ -4,17 +4,19 @@
   <meta charset="UTF-8">
   <title>Index</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.7/jquery.autocomplete.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2503/2503508.png" />
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- include jquery autocomplete JS  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.11/jquery.autocomplete.min.js"></script>
   <style>
     body {
-      background-color: #e6f7ff; /* 更改背景颜色为淡蓝色 */
-      color: #007bff; /* 更改文字颜色为蓝色 */
-      font-family: "Arial"; /* 保持字体 */
+      background-color: #e6f7ff;
+      color: #007bff;
+      font-family: "Arial";
       font-weight: 300;
-      text-align: center; /* 所有文本居中 */
+      text-align: center;
     }
 
     h1 {
@@ -24,34 +26,35 @@
       text-align: center;
       font-size: 120px;
       font-weight: 600;
-      color: #007bff; /* 更改文字颜色为蓝色 */
-      text-shadow: 2px 2px 0px #0056b3, 6px 6px 0px #00488a, 8px 8px 0px #003366; /* 蓝色阴影 */
+      color: #007bff;
+      text-shadow: 2px 2px 0px #0056b3, 6px 6px 0px #00488a, 8px 8px 0px #003366;
     }
 
     .search, .searchContainer, .searchRow {
       width: 100%;
       display: flex;
-      justify-content: center; /* 确保搜索相关元素居中 */
+      justify-content: center;
       align-items: center;
       flex-direction: column;
+      margin-bottom: 50px; /* 增加底部边距 */
     }
 
     .searchTerm, .searchTermRow {
       width: 30%;
-      border: 3px solid #007bff; /* 蓝色边框 */
+      border: 3px solid #007bff;
       padding: 5px;
       height: 20px;
       border-radius: 5px;
-      color: #007bff; /* 蓝色文字 */
+      color: #007bff;
       margin: 10px;
     }
 
     .searchButton {
       width: 83px;
       height: 37px;
-      border: 1px solid #007bff; /* 蓝色边框 */
-      background: #007bff; /* 蓝色背景 */
-      color: #ffffff; /* 白色文字 */
+      border: 1px solid #007bff;
+      background: #007bff;
+      color: #ffffff;
       border-radius: 5px;
       cursor: pointer;
       font-size: 19px;
@@ -60,50 +63,210 @@
     .nav-container, .tabs {
       display: flex;
       justify-content: center;
-      background: #f8f9fa; /* 轻微灰白背景 */
+      background: #f8f9fa;
     }
 
     .nav-container a, .nav-container .label {
       padding: 10px 30px;
-      color: #007bff; /* 蓝色文字 */
+      color: #007bff;
       text-decoration: none;
       text-transform: uppercase;
       font-size: 16px;
       font-weight: 700;
       display: inline-block;
+      text-align: center; /* 文字居中 */
     }
 
     .header_nav ul {
       list-style-type: none;
       margin: 0;
       padding: 0;
-      display: flex; /* This will align the list items (li) in a row */
-      justify-content: flex-end; /* This will align the list items to the right */
+      display: flex;
+      justify-content: flex-end;
       background-color: #f8f9fa;
     }
 
     .header_nav li {
-      margin: 0 10px; /* Add spacing between the buttons */
+      margin: 0 10px;
     }
 
     .header_nav li a {
-      display: block; /* This will apply the padding and margin effectively */
+      display: block;
       padding: 14px 16px;
-      text-decoration: none;
-      color: #007bff; /* Keeping your blue text color */
-      background-color: transparent; /* Adjust background if needed */
+      text-decoration:none;
+      color: #007bff;
+      background-color: transparent;
     }
 
     .header_nav li a:hover {
-      background-color: #d4e8ff; /* Mouse over color */
+      background-color: #d4e8ff;
+    }
+
+    .tabs {
+      border: 1px solid #007bff;
+      background: #ffffff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .label {
+      padding: 15px 30px;
+      display: block;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+    }
+
+    .input:checked + .label {
+      color: #0056b3;
+      border-bottom: 3px solid #0056b3;
+    }
+
+    .panel {
+      padding: 20px;
+      background: #f1f1f1;
+      display: none;
+    }
+
+    .input:checked + .label + .panel {
+      display: block;
+    }
+
+    .genre-panel a, .alpha-panel a {
+      display: inline-block;
+      margin: 5px;
+      padding: 5px 10px;
+      background-color: #e6f7ff;
+      color: #007bff;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .genre-panel a:hover, .alpha-panel a:hover {
+      background-color: #bde0ff;
+    }
+
+    .header_nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #f8f9fa;
+    }
+
+    .header_nav .search-container {
+      position: relative;
+      display: inline-block;
+      width: 300px;
+      margin-right: 20px;
+    }
+
+    .header_nav .search-input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #007bff;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .header_nav .autocomplete-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+      max-height: 500px;
+      overflow-y: auto;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      border-top: none;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column; /* 添加这一行,使下拉列表垂直排列 */
+    }
+
+    .header_nav .autocomplete-results li {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .header_nav .autocomplete-results li:hover,
+    .header_nav .autocomplete-results li.selected {
+      background-color: #e6f7ff;
+    }
+
+    .header_nav .search-input-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .header_nav .search-input {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #007bff;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+    }
+
+    .header_nav .search-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: 2px solid #007bff;
+      border-left: none;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+    }
+
+    .header_nav .search-button:hover {
+      background-color: #0056b3;
+    }
+
+    .header_nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .header_nav li {
+      margin: 0 10px;
+    }
+
+    .header_nav li a {
+      display: block;
+      padding: 8px 16px;
+      text-decoration: none;
+      color: #007bff;
+      background-color: transparent;
+    }
+
+    .header_nav li a:hover {
+      background-color: #d4e8ff;
     }
 
   </style>
 </head>
 <body>
-<div class = "header_nav">
+
+<div class="header_nav">
+  <div class="search-container">
+    <div class="search-input-container">
+      <input type="text" id="autocomplete" placeholder="Search movies..." class="search-input">
+      <button id="search-button" class="search-button">Search</button>
+      <input type="checkbox" id="fuzzy-search" />
+      <label for="fuzzy-search">Fuzzy Search</label>
+    </div>
+    <ul id="autocomplete-results" class="autocomplete-results"></ul>
+  </div>
   <nav class="header">
-    <ul class="header-left" id = "home"></ul>
+    <ul class="header-right">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shopping-cart.html">Check Out</a></li>
+    </ul>
   </nav>
 </div>
 
@@ -132,14 +295,13 @@
   <div class="tabs">
     <input checked="checked" class="input" id="tab-1" name="tabs" type="radio">
     <label class="label" for="tab-1">Browse by Genre</label>
-    <div class="panel" id = "genre_body"></div>
-    <!--    for loop-->
+    <div class="panel genre-panel" id="genre_body"></div>
     <input class="input" id="tab-2" name="tabs" type="radio">
     <label class="label" for="tab-2">Browse by Alphanumeric</label>
-    <div class="panel" id = "alpha_body"></div>
-    <!--    for loop-->
+    <div class="panel alpha-panel" id="alpha_body"></div>
   </div>
 </div>
 <script src="index.js"></script>
+<script src="autocomplete.js"></script>
 </body>
 </html>

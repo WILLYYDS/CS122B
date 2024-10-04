@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Movie Payment Page</title>
-  <link rel="stylesheet" href="css/payment.css">
+  <meta charset="UTF-8">
+  <title>Payment to Fablix</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-
-<div class="topNavigationBar">
-  <a href="index.html">Home </a>
-  <a href="login.html">Login </a>
-  <a href="search.html">Search</a>
-  <a href="shopping-cart.html">Checkout</a>
-  <a href="payment.html">Proceed to Payment</a>
+<body class="flex items-center justify-center h-screen bg-blue-100">
+<div class="bg-white p-8 rounded shadow-md w-96">
+  <h2 class="text-2xl font-bold mb-8 text-gray-700">Enter your Payment Information</h2>
+  <form id="payment_form" method="post">
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="firstName">
+        First Name
+      </label>
+      <input id="firstName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="firstName" placeholder="John.." type="text" required>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="lastName">
+        Last Name
+      </label>
+      <input id="lastName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="lastName" placeholder="Doe.." type="text" required>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="creditCardNum">
+        Credit Card Number
+      </label>
+      <input id="creditCardNum" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="creditCardNum" placeholder="1234 5678 9012 3456" type="text" required>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="expirationDate">
+        Expiration Date
+      </label>
+      <input id="expirationDate" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="expirationDate" placeholder="MM/YY" type="text" required>
+    </div>
+    <div class="flex items-center justify-between">
+      <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Place Order">
+    </div>
+  </form>
+  <div id="payment_error_message" class="text-red-500 mt-4"></div>
 </div>
-
-<h1>Enter your Payment Information</h1>
-
-<form id="payment_form" method="post">
-  <label>First Name:</label>
-  <input type="text" id="firstName" name = "firstName" placeholder="John.."><br><br>
-  <label>Last Name:      </label>
-  <input type="text" id="lastName" name = "lastName" placeholder="Doe.."><br><br>
-  <label>Credit Card Number:  </label>
-  <input type="text" id="creditCardNum" name = "creditCardNum" placeholder="12346 44222 ..."><br><br>
-  <label>Expiration Date:     </label>
-  <input type="text" id="expirationDate" name = "expirationDate" placeholder="09/26 ..."><br><br>
-
-  <input type="submit" value="Place Order">
-</form>
-
-<div id="payment_error_message"></div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="payment.js"></script>
-
 </body>
 </html>
