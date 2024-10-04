@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Movie Payment Page</title>
+  <link rel="stylesheet" href="css/payment.css">
+</head>
+<body>
+
+<div class="topNavigationBar">
+  <a href="index.html">Home </a>
+  <a href="login.html">Login </a>
+  <a href="search.html">Search</a>
+  <a href="shopping-cart.html">Checkout</a>
+  <a href="payment.html">Proceed to Payment</a>
+</div>
+
+<h1>Enter your Payment Information</h1>
+
+<form id="payment_form" method="post">
+  <label>First Name:</label>
+  <input type="text" id="firstName" name = "firstName" placeholder="John.."><br><br>
+  <label>Last Name:      </label>
+  <input type="text" id="lastName" name = "lastName" placeholder="Doe.."><br><br>
+  <label>Credit Card Number:  </label>
+  <input type="text" id="creditCardNum" name = "creditCardNum" placeholder="12346 44222 ..."><br><br>
+  <label>Expiration Date:     </label>
+  <input type="text" id="expirationDate" name = "expirationDate" placeholder="09/26 ..."><br><br>
+
+  <input type="submit" value="Place Order">
+</form>
+
+<div id="payment_error_message"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="payment.js"></script>
+
+</body>
+</html>

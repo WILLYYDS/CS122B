@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Index</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.7/jquery.autocomplete.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2503/2503508.png" />
+  <style>
+    body {
+      background-color: #e6f7ff; /* 更改背景颜色为淡蓝色 */
+      color: #007bff; /* 更改文字颜色为蓝色 */
+      font-family: "Arial"; /* 保持字体 */
+      font-weight: 300;
+      text-align: center; /* 所有文本居中 */
+    }
+
+    h1 {
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 2rem;
+      padding: 3rem 0;
+      text-align: center;
+      font-size: 120px;
+      font-weight: 600;
+      color: #007bff; /* 更改文字颜色为蓝色 */
+      text-shadow: 2px 2px 0px #0056b3, 6px 6px 0px #00488a, 8px 8px 0px #003366; /* 蓝色阴影 */
+    }
+
+    .search, .searchContainer, .searchRow {
+      width: 100%;
+      display: flex;
+      justify-content: center; /* 确保搜索相关元素居中 */
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .searchTerm, .searchTermRow {
+      width: 30%;
+      border: 3px solid #007bff; /* 蓝色边框 */
+      padding: 5px;
+      height: 20px;
+      border-radius: 5px;
+      color: #007bff; /* 蓝色文字 */
+      margin: 10px;
+    }
+
+    .searchButton {
+      width: 83px;
+      height: 37px;
+      border: 1px solid #007bff; /* 蓝色边框 */
+      background: #007bff; /* 蓝色背景 */
+      color: #ffffff; /* 白色文字 */
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 19px;
+    }
+
+    .nav-container, .tabs {
+      display: flex;
+      justify-content: center;
+      background: #f8f9fa; /* 轻微灰白背景 */
+    }
+
+    .nav-container a, .nav-container .label {
+      padding: 10px 30px;
+      color: #007bff; /* 蓝色文字 */
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 16px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .header_nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex; /* This will align the list items (li) in a row */
+      justify-content: flex-end; /* This will align the list items to the right */
+      background-color: #f8f9fa;
+    }
+
+    .header_nav li {
+      margin: 0 10px; /* Add spacing between the buttons */
+    }
+
+    .header_nav li a {
+      display: block; /* This will apply the padding and margin effectively */
+      padding: 14px 16px;
+      text-decoration: none;
+      color: #007bff; /* Keeping your blue text color */
+      background-color: transparent; /* Adjust background if needed */
+    }
+
+    .header_nav li a:hover {
+      background-color: #d4e8ff; /* Mouse over color */
+    }
+
+  </style>
+</head>
+<body>
+<div class = "header_nav">
+  <nav class="header">
+    <ul class="header-left" id = "home"></ul>
+  </nav>
+</div>
+
+
+<div>
+  <h1>Welcome To Fabflix</h1>
+</div>
+
+<div class="wrap">
+  <div class="search">
+    <form id="search" class="searchContainer">
+      <input type="text" class="searchTerm title" placeholder="Search Movie By Title" name="sort_title" id="autocomplete">
+      <div class="searchRow">
+        <input type="text" class="searchTermRow year" placeholder="Year" name="sort_year" inputmode="numeric">
+        <input type="text" class="searchTermRow director" placeholder="Director" name="sort_director">
+        <input type="text" class="searchTermRow starname" placeholder="Star's Name" name="sort_name">
+      </div>
+      <button type="submit" class="searchButton" value="Search">
+        <i class="fa fa-search">Search</i>
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="nav-container">
+  <div class="tabs">
+    <input checked="checked" class="input" id="tab-1" name="tabs" type="radio">
+    <label class="label" for="tab-1">Browse by Genre</label>
+    <div class="panel" id = "genre_body"></div>
+    <!--    for loop-->
+    <input class="input" id="tab-2" name="tabs" type="radio">
+    <label class="label" for="tab-2">Browse by Alphanumeric</label>
+    <div class="panel" id = "alpha_body"></div>
+    <!--    for loop-->
+  </div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>

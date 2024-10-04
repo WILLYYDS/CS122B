@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2503/2503508.png" />
+    <style>
+        body {
+            background-color: #e6f7ff; /* Light blue background */
+            color: #007bff; /* Blue text */
+            font-family: "Arial";
+            font-weight: 300;
+            text-align: center; /* Centered text */
+        }
+
+        h1 {
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 2rem;
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 36px; /* Adjusted size for single movie title */
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #007bff; /* Blue text for subtitles */
+        }
+
+        .table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f8f9fa;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table td a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .table td a:hover {
+            color: #0056b3;
+        }
+
+        button {
+            background-color: #007bff; /* Blue button */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px auto;
+            cursor: pointer;
+            transition-duration: 0.4s;
+            border-radius: 30px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            color: #ffffff;
+        }
+
+        .header_nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end;
+            background-color: #f8f9fa;
+        }
+
+        .header_nav li {
+            margin: 0 10px;
+        }
+
+        .header_nav li a {
+            display: block;
+            padding: 14px 16px;
+            text-decoration: none;
+            color: #007bff;
+            background-color: transparent;
+        }
+
+        .header_nav li a:hover {
+            background-color: #d4e8ff;
+        }
+    </style>
+    <title>Single Movie</title>
+
+</head>
+<body>
+
+<div class = "header_nav">
+    <nav class="header">
+        <ul class="header-right" id = "home">
+            <div class = "button" id = "button"></div>
+        </ul>
+    </nav>
+</div>
+
+<div>
+    <h1 id="movie_title"></h1>
+    <h3 id="movie_info"></h3>
+    <table id="star_table" class="table table-striped">
+        <thead>
+        <tr>
+            <th>Star Name</th>
+            <th>Year of Birth</th>
+        </tr>
+        </thead>
+        <tbody id="star_table_body"></tbody>
+    </table>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="index.html"><button>Back to Main Page</button></a>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="single-movie.js"></script>
+</div>
+</body>
+</html>

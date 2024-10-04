@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2503/2503508.png"/>
+    <style>
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 2rem;
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 36px; /* Adjusted size for single movie title */
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .table {
+            width: 80%; /* 设置表格宽度为页面宽度的80% */
+            margin: 20px auto; /* 上下间距20px，自动左右居中 */
+            border-collapse: collapse; /* 边框合并 */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* 添加阴影效果 */
+        }
+
+        .table th, .table td {
+            padding: 12px 15px; /* 单元格内边距 */
+            border: 1px solid #ddd; /* 单元格边框 */
+        }
+
+        .table th {
+            background-color: #f8f9fa; /* 表头背景色 */
+            color: #333; /* 表头文字颜色 */
+            font-weight: bold; /* 表头字体加粗 */
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2; /* 偶数行背景色 */
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1; /* 鼠标悬停行背景色变化 */
+        }
+
+        .table td a {
+            color: #007bff; /* 链接颜色 */
+            text-decoration: none; /* 去除下划线 */
+        }
+
+        .table td a:hover {
+            color: #0056b3; /* 链接鼠标悬停颜色 */
+        }
+
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px auto;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            border-radius: 30px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            color: #ffffff; /* 文本颜色 */
+        }
+
+        .header_nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            position: fixed;
+            overflow: hidden;
+            background-color: #333;
+            width: 100%;
+        }
+
+        .header_nav li {
+            float: left;
+        }
+
+        .header_nav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .header_nav li a:hover {
+            background-color: #111;
+        }
+    </style>
+    <title>Single Star</title>
+</head>
+<body>
+
+<div class="header_nav">
+    <nav class="header">
+        <ul class="header-right" id="home">
+        </ul>
+    </nav>
+</div>
+
+<div>
+    <h1 id="star_name"></h1>
+</div>
+
+<table id="movie_table" class="table table-striped">
+    <thead>
+    <tr>
+        <th>Movie Title</th>
+        <th>Release Year</th>
+        <th>Director</th>
+    </tr>
+    </thead>
+    <tbody id="movie_table_body"></tbody>
+</table>
+
+<div style="text-align: center; margin-top: 20px;">
+    <a href="index.html">
+        <button>Back to Main Page</button>
+    </a>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="single-star.js"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h1 {
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .movie_table thead tr {
+            border-top: none;
+            border-bottom: 2px solid #dee2e6;
+            color: #212529;
+            font-size: 16px;
+        }
+
+        .table_title th {
+            border-top: none;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .movie_table tbody th {
+            color: #212529;
+            font-weight: normal;
+            padding: 12px;
+            border-top: 1px solid #dee2e6;
+            transition: background-color 0.3s;
+        }
+
+        .movie_table tbody tr:hover th {
+            background-color: #f8f9fa;
+        }
+
+        .movie_table tbody tr:hover th a {
+            color: #007bff;
+        }
+
+        #primary_nav_wrap {
+            margin-top: 15px;
+        }
+
+        #primary_nav_wrap ul {
+            list-style: none;
+            position: relative;
+            float: left;
+            margin: 0;
+            padding: 0;
+        }
+
+        #primary_nav_wrap ul a {
+            display: block;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 32px;
+            padding: 0 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        #primary_nav_wrap ul li {
+            position: relative;
+            float: left;
+            margin: 0;
+            padding: 0;
+        }
+
+        #primary_nav_wrap ul li.current-menu-item {
+            background-color: #f8f9fa;
+        }
+
+        #primary_nav_wrap ul li:hover {
+            background-color: #f8f9fa;
+        }
+
+        #primary_nav_wrap ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            padding: 0;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        #primary_nav_wrap ul ul li {
+            float: none;
+            width: 200px;
+        }
+
+        #primary_nav_wrap ul ul a {
+            line-height: 120%;
+            padding: 10px 15px;
+        }
+
+        #primary_nav_wrap ul ul ul {
+            top: 0;
+            left: 100%;
+        }
+
+        #primary_nav_wrap ul li:hover > ul {
+            display: block;
+        }
+
+        .header_nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            position: fixed;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            width: 100%;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .header_nav li {
+            float: left;
+        }
+
+        .header_nav li a {
+            display: block;
+            color: #212529;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .header_nav li a:hover {
+            background-color: #f8f9fa;
+            color: #007bff;
+        }
+
+        .prevNext li {
+            float: right;
+        }
+    </style>
+    <title>Movie List</title>
+</head>
+<body>
+
+<div class="header_nav">
+    <nav class="header">
+        <ul class="header-right" id="home">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shopping-cart.html">Check Out</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div>
+    <h1>Movie List</h1>
+</div>
+
+
+<nav id="primary_nav_wrap">
+    <ul>
+        <li><a href="#">Sort By</a>
+            <ul id="sort_nav"></ul>
+        </li>
+        <li><a href="#">Number of Movies</a>
+            <ul id="num"></ul>
+        </li>
+    </ul>
+</nav>
+
+<table id="movieList_table" class="table table-striped movie_table">
+    <thead>
+    <tr class="table_title">
+        <th>Movie Title</th>
+        <th>Released Year</th>
+        <th>Director</th>
+        <th>Genre</th>
+        <th>Actors</th>
+        <th>Ratings</th>
+        <th>Add to Cart?</th>
+    </tr>
+    </thead>
+    <tbody id="movieList_table_body"></tbody>
+</table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="movie-list.js"></script>
+</body>
+</html>
