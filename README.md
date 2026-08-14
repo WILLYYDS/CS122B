@@ -96,15 +96,7 @@ This indicates that the first configuration (shown in the first image) handles a
 
 # Demo Video
 
-### - Project 1 Demo Video here：https://drive.google.com/file/d/1K5AAdRiwdrTMpG3zFNxRlDfILC-0Jx-Q/view?usp=sharing
-
-### - Project 2 Demo Video here: https://drive.google.com/drive/folders/1q9WkuCPKhS-dBRyc8rxXMJ19d77zmLpy?usp=drive_link
-
-### - Project 3 Demo Video here：https://drive.google.com/drive/folders/17BQ_FDlTE-IhTr14YvqtzzFW8-plt0kv?usp=sharing
-
-### - Project 4 Video Demo Link: https://youtu.be/zEL8w_rdQPo?si=OgYUwC6h4Hefk31R
-
-### - Project 5 Video Demo Link: [https://youtu.be/zEL8w_rdQPo?si=OgYUwC6h4Hefk31R](https://www.youtube.com/watch?v=UDOTG-eKS8Y)
+Video Demo Link: [https://youtu.be/zEL8w_rdQPo?si=OgYUwC6h4Hefk31R](https://www.youtube.com/watch?v=UDOTG-eKS8Y)
 
 
 
