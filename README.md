@@ -1,4 +1,4 @@
-# CS 122B Project 1 For CDC Disney
+# Fabflix-Scalable-Movie-Platform
 ### Authors: 
 #### - Jiayun Wang, JiaLiang Huang
 
