@@ -1,138 +1,194 @@
-# Fabflix-Scalable-Movie-Platform
-### Authors: 
-#### - Jiayun Wang, JiaLiang Huang
+# Fabflix
 
-### Contributions for each member:
-#### - Jiayun Wang    #16742752 
-#### - Jialiang Huang    #41101462
+> A full-stack movie discovery and checkout platform built to explore scalable web architecture, relational data systems, and cloud-native deployment.
 
+![Java 11](https://img.shields.io/badge/Java-11-ED8B00?logo=openjdk&logoColor=white)
+![Jakarta Servlet](https://img.shields.io/badge/Jakarta-Servlet-1B6AC6?logo=eclipseide&logoColor=white)
+![MySQL 8](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-containerized-2496ED?logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-deployed-326CE5?logo=kubernetes&logoColor=white)
 
-#### Project 1
-#### Jiayun Wang - Servlets + Json + Github + MySQL + Debug + Demo
-#### Jialiang Huang - HTML + CSS + AWS + Jump Function + Project setup / management
+[Watch the demo](https://www.youtube.com/watch?v=UDOTG-eKS8Y)
 
-#### Project 2
-#### Jiayun Wang - Servlet + Js + HTML + Github + MySQL + Debug + Demo
-#### Jialiang Huang - HTML + Project setup +  + CSS + AWS + Session/Session Storage
+> [!NOTE]
+> Fabflix was originally completed in 2024 as a two-person UC Irvine CS 122B project. The repository is preserved as a portfolio and learning project; its original deployment is no longer maintained.
 
-#### Project 3
-#### Jiayun Wang - reCAPTCHA + Prepared Statement + HTTPS + Demo
-#### Jialiang Huang - HTTPS + XML+ Encryption + Dashboard
-All insertion Optimizations:
+## Overview
 
-1. Batch Insertion: Rather than inserting records one at a time, batch insertion enables the database to process multiple records simultaneously. This significantly reduces overhead in establishing database transactions, leading to a substantial increase in operational speed.
+Fabflix is a database-backed web application for discovering movies, viewing cast and genre information, managing a shopping cart, and completing a simulated checkout. It combines a browser-based frontend with Jakarta Servlets and MySQL, then extends the application with connection pooling, primary/replica database routing, containerization, load balancing, and Kubernetes deployment.
 
-2. Caching Not Found Entries: 'NotFoundStars' and 'NotFoundMovies' serve as caches for stars and movies that are searched for but not present in the database. This system prevents unnecessary repeat queries to the database, saving time on searching for non-existent entries.
+The project also includes a SAX-based data ingestion pipeline and a JMeter workload for evaluating search performance.
 
-3. Index Creation: Created indexes on the 'star' table (name column) and 'movies' table (title column). This optimization considerably speeds up data retrieval by enabling faster access to data associated with specific values, enhancing the efficiency of fetching records of stars and movies.
+## Highlights
 
-4. Handling Bad Data: Tracking erroneous or irrelevant data helps in avoiding repetitive mistakes and saves time on processing non-useful data. This involves maintaining a list of records that have caused errors or have been flagged as incorrect in the past.
+- Search movies by title, year, director, or star
+- Browse the catalog by genre or alphanumeric title
+- Full-text search, autocomplete, and optional fuzzy matching
+- Paginated and sortable movie results
+- Movie and star detail pages
+- Session-based login and shopping-cart flows
+- Simulated credit-card validation and checkout
+- Employee dashboard for inspecting schema metadata and adding movies or stars
+- Prepared statements for database access
+- JNDI connection pooling with separate read and write data sources
+- MySQL primary/replica routing for read-heavy workloads
+- Multi-stage Docker build and a three-replica Kubernetes deployment
+- NGINX Ingress with cookie-based session affinity
 
-5. Efficient Data Structures: Utilized efficient data structures for storing and manipulating data. Arrays provide quick access to elements by index, while hash maps offer rapid retrieval of values associated with specific keys.
-   
-#### Extra Credit
-1. Use Godaddy to register and purchase a domain link to an external website to deploy correctly to https://movieyee.com/, which may take anywhere from a few hours to 48 hours due to DNS propagation.
+## Architecture
 
-2. Correctly deployed DNS, searchable at https://dnschecker.org/
-
-3. Elastic IP. correctly set up AWS inbound and outbound rules
-
-#### Project 4
-#### Jiayun Wang - Connection Pooling + Master-Slave Replication + Load balancer
-#### Jialiang Huang - Full-text Search + Autocomplete + fuzzy search
-#### Connection Pooling:
-
-Explain how Connection Pooling is utilized in the Fabflix code:
-
-In Fabflix's code, the DataSource object is initialized within the servlet's init method by locating the appropriate resource from the context using JNDI. These resources are typically java:comp/env/jdbc/read or java:comp/env/jdbc/moviedb. When a request is handled in the doPost() or doGet() method, a connection is acquired from the connection pool via dataSource.getConnection(). This call manages the pool of available connections, ensuring that a connection is efficiently retrieved from the pool. The retrieved connection is then used to perform database operations. Once the query is executed and necessary operations are completed, the connection is automatically closed and returned to the pool when it goes out of scope.
-
-Explain how Connection Pooling works with two backend SQL:
-
-The context.xml file defines two data sources: one for the read/write master database (jdbc/write) and another for the read-only database (jdbc/read). Connection pooling settings are applied to each data source, creating distinct connection pools for each. When a servlet handles a request, it retrieves a connection from the relevant data source based on the operation required. Write operations obtain connections from the jdbc/write data source, while read operations acquire connections from the jdbc/read data source. Each connection pool manages the allocation and reuse of connections within its pool. By using separate connection pools for each data source, the system ensures that requests are efficiently directed to the appropriate database, enhancing both availability and scalability.
-
-#### Master/Slave:
-Servlets that use the read-only datasource:
-
-src/IndexServlet.java
-src/DashboardloginServlet.java
-src/LoginServlet.java
-src/MovieListServlet.java
-src/SingleMovieServlet.java
-src/SingleStarServlet.java
-
-Servlets that use the read/write datasource:
-
-src/DashboardServlet.java
-src/Payment.java
-
-How read/write requests are routed to Master/Slave SQL:
-In the context.xml file, there are two defined data sources: one for the read/write master database (jdbc/moviedb) and another for the read-only database (jdbc/read).
-
-#### Project 5
-#### Jiayun Wang - Docker + JMeter + README + Debug
-#### Jialiang Huang - Kubernetes Setup + AWS + Demo + Fabflix on Kubernetes
-#### JMeter TS:
-First Image (Test 1)
-Number of Samples: 1106
-Latest Sample Time: 167 ms
-Average Response Time: 290 ms
-Median Response Time: 281 ms
-Throughput: 2107.066 requests per minute
-![1.png](1.png)
-Second Image (Test 2)
-Number of Samples: 907
-Latest Sample Time: 116 ms
-Average Response Time: 304 ms
-Median Response Time: 307 ms
-Throughput: 1933.559 requests per minute
-![2.png](2.png)
-
-#### Summary
-Test 1 has a higher throughput of 2107.066 requests per minute compared to Test 2 which has a throughput of 1933.559 requests per minute.
-The average response time in Test 1 is slightly lower (290 ms) compared to Test 2 (304 ms).
-The median response time in Test 1 (281 ms) is also lower than in Test 2 (307 ms).
-This indicates that the first configuration (shown in the first image) handles a higher number of requests per minute with slightly better response times compared to the second configuration (shown in the second image).
-
-
-# Demo Video
-
-Video Demo Link: [https://youtu.be/zEL8w_rdQPo?si=OgYUwC6h4Hefk31R](https://www.youtube.com/watch?v=UDOTG-eKS8Y)
-
-
-
-# Instructions Login to the AWS
-
-Instance ID: i-00f891bc393235c23 (Will's Service)
-
-1. Obtain SSH access.
-2. Ensure the key file is secured. After downloading the key file named KeyForWill.pem,
-3. Set proper permissions to ensure the key file is not overly permissive.
-```
-chmod 400 "KeyForWill.pem"
-```
-4. Connect using the DNS provided for the instance:
-```
-ec2-34-216-228-170.us-west-2.compute.amazonaws.com
+```mermaid
+flowchart LR
+    U["Browser (HTML, CSS, JavaScript)"] --> I["NGINX Ingress"]
+    I --> S["Kubernetes Service"]
+    S --> T["Tomcat application replicas"]
+    T --> R["Read datasource (JNDI)"]
+    T --> W["Write datasource (JNDI)"]
+    R --> RR["MySQL read replica"]
+    W --> P["MySQL primary"]
+    P -. "Replication" .-> RR
 ```
 
-Example Command
+Read-oriented endpoints—catalog browsing, search, login lookups, and detail pages—use the replica-facing data source. Checkout and dashboard mutations use the primary-facing data source.
+
+## Technology Stack
+
+| Layer | Technologies |
+| --- | --- |
+| Frontend | HTML5, CSS, JavaScript, jQuery, Bootstrap |
+| Backend | Java 11, Jakarta Servlet API, Gson |
+| Data | MySQL 8, JDBC, JNDI, connection pooling |
+| Data ingestion | SAX XML parser, batch inserts, validation caches |
+| Build and runtime | Maven, Apache Tomcat 10 |
+| Infrastructure | Docker, Kubernetes, NGINX Ingress, AWS |
+| Performance testing | Apache JMeter |
+
+## Data Ingestion
+
+The ingestion pipeline parses movie, cast, and actor XML files with SAX and loads them into the relational schema. Its main optimizations include:
+
+- batching inserts to reduce transaction overhead;
+- indexing movie titles and star names;
+- caching missing movies and stars to avoid repeated lookups;
+- tracking duplicate or inconsistent records in an error report; and
+- using prepared statements and reusable in-memory collections.
+
+## Performance Snapshot
+
+The repository includes the original JMeter test plan and result screenshots. These measurements reflect the 2024 test environment and should be treated as historical results, not a current production SLA.
+
+| Run | Samples | Latest response | Average | Median | Throughput |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 1 | 1,106 | 167 ms | 290 ms | 281 ms | 2,107.066 requests/min |
+| 2 | 907 | 116 ms | 304 ms | 307 ms | 1,933.559 requests/min |
+
+<details>
+<summary>View original JMeter screenshots</summary>
+
+### Run 1
+
+![JMeter result for run 1](./1.png)
+
+### Run 2
+
+![JMeter result for run 2](./2.png)
+
+</details>
+
+## Project Structure
+
+```text
+.
+├── src/                    # Servlets, models, search, checkout, and XML ingestion
+├── WebContent/             # HTML, JavaScript, and Tomcat web configuration
+├── create_table.sql        # MySQL schema
+├── pom.xml                 # Maven WAR build
+├── Dockerfile              # Multi-stage Maven and Tomcat image
+├── Fabflix.yaml            # Kubernetes Deployment and Service
+├── ingress.yaml            # NGINX Ingress and session affinity
+└── JmeterTest.jmx          # Search workload and performance test plan
 ```
-ssh -i "KeyForWill.pem" ubuntu@ec2-34-216-228-170.us-west-2.compute.amazonaws.com
+
+## Getting Started
+
+### Prerequisites
+
+- Java 11
+- Maven 3.8 or later
+- Apache Tomcat 10
+- MySQL 8
+- A compatible movie dataset; seed data is not included in this repository
+
+### 1. Create the database
+
+```bash
+mysql -u root -p < create_table.sql
 ```
 
+Load your movie dataset after creating the schema.
 
-# Mysql database 
-### `moviedbe`
+### 2. Configure the data sources
 
+Update `WebContent/META-INF/context.xml` with your own MySQL hosts and credentials. The application expects two JNDI resources:
+
+- `jdbc/moviedb` for writes to the primary database;
+- `jdbc/read` for read traffic.
+
+For local development, both resources can point to the same MySQL instance. Do not commit real credentials.
+
+### 3. Build the application
+
+```bash
+mvn clean package
 ```
-local> mysql -u mytestuser -p 
-(Password: My6$Password)
-mysql> SHOW DATABASES;
-mysql> USE moviedbe;
+
+The build produces:
+
+```text
+target/cs122b-project1-api-example.war
 ```
 
-# Deploy Locally on Development Machine
+### 4. Deploy to Tomcat
 
-1. IntelliJ Configuration
-2. Import Project from External Model > Choose Maven
+Copy the generated WAR into Tomcat's `webapps` directory, start Tomcat, and open:
 
+```text
+http://localhost:8080/cs122b-project1-api-example/
+```
+
+## Containers and Kubernetes
+
+Build the container image:
+
+```bash
+docker build -t fabflix .
+```
+
+Before applying the Kubernetes manifests, update the image reference, configure database services and secrets, and verify the Ingress controller is installed.
+
+```bash
+kubectl apply -f Fabflix.yaml
+kubectl apply -f ingress.yaml
+```
+
+The supplied deployment runs three application replicas behind a ClusterIP service. The Ingress configuration uses cookie-based affinity so session-backed requests remain on the same replica.
+
+## Production Hardening
+
+This repository captures an academic implementation and is not production-ready as-is. Before deploying it publicly:
+
+- rotate and externalize all database and third-party credentials;
+- replace plaintext password checks with a modern password-hashing scheme;
+- enable and verify HTTPS and bot protection;
+- move environment-specific values into secrets and configuration;
+- add automated tests, health checks, observability, and CI/CD; and
+- review the checkout flow against current security and privacy requirements.
+
+## Team
+
+- **Jiayun Wang** — backend servlets, MySQL integration, performance testing, Docker, and debugging
+- **Jialiang Huang** — frontend, search experience, AWS/Kubernetes deployment, and project setup
+
+---
+
+Built as a hands-on study of full-stack development, database performance, and distributed deployment.
